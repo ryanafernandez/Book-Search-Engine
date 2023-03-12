@@ -62,6 +62,7 @@ const SearchBooks = () => {
     }
   };
 
+  // Creates saveBook function to handle SAVE_BOOK mutation
   const [saveBook, { error, data }] = useMutation(SAVE_BOOK);
 
   // create function to handle saving a book to our database
@@ -77,17 +78,10 @@ const SearchBooks = () => {
     }
 
     try {
-      console.log("bookToSave:", bookToSave);
-      
+      // Calls SAVE_BOOK mutation. data holds updated userData after pushing to savedBooks array
       const { data } = await saveBook({
         variables: { book: bookToSave },
       });
-      console.log("data", data);
-      // const response = await saveBook(bookToSave, token);
-
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);

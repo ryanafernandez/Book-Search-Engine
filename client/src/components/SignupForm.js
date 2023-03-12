@@ -3,7 +3,6 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-// import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -32,24 +31,20 @@ const SignupForm = () => {
     }
 
     try {
+      // calls ADD_USER mutation. Takes username, email, and password as input
+      // Outputs token and user data
       const { data } = await addUser({
         variables: { ...userFormData },
       });
 
-      // const response = await createUser(userFormData);
-
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user } = await response.json();
-      // console.log(user);
+      // Saves user token to localStorage
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
 
+    // Reset sign up form inputs
     setUserFormData({
       username: '',
       email: '',
