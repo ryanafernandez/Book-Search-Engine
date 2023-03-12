@@ -36,7 +36,7 @@ export const SAVE_BOOK = gql`
                 authors
                 bookId
                 description
-                images
+                image
                 link
                 title
             }
@@ -55,7 +55,7 @@ export const REMOVE_BOOK = gql`
                 authors
                 bookId
                 description
-                images
+                image
                 link
                 title
             }
